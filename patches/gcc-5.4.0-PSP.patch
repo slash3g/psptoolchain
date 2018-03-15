@@ -658,13 +658,17 @@ diff -Nru gcc-5.4.0/gcc/config/mips/mips.md gcc-5.4.0-psp/gcc/config/mips/mips.m
 diff -Nru gcc-5.4.0/gcc/config/mips/mips.opt gcc-5.4.0-psp/gcc/config/mips/mips.opt
 --- gcc-5.4.0/gcc/config/mips/mips.opt	2014-02-21 13:30:47.000000000 +0000
 +++ gcc-5.4.0-psp/gcc/config/mips/mips.opt	2015-10-19 00:17:27.025646526 +0100
-@@ -400,5 +400,9 @@
+@@ -400,5 +400,13 @@
  Target Report Var(TARGET_XGOT)
  Lift restrictions on GOT size
  
 +mpreferred-stack-boundary=
 +Target RejectNegative Joined Var(mips_preferred_stack_boundary_string)
 +Attempt to keep stack aligned to this power of 2
++
++; Ignored by the compiler
++mno-crt0
++Target RejectNegative
 +
  noasmopt
  Driver
@@ -695,7 +699,7 @@ diff -Nru gcc-5.4.0/gcc/config/mips/psp.h gcc-5.4.0-psp/gcc/config/mips/psp.h
 +
 +/* Override the startfile spec to include crt0.o. */
 +#undef STARTFILE_SPEC
-+#define STARTFILE_SPEC "crt0%O%s crti%O%s crtbegin%O%s"
++#define STARTFILE_SPEC "{!mno-crt0:crt0%O%s} crti%O%s crtbegin%O%s"
 +
 +#undef SUBTARGET_CPP_SPEC
 +#define SUBTARGET_CPP_SPEC "-DPSP=1 -D__psp__=1 -D_PSP=1"
@@ -799,7 +803,7 @@ diff -Nru gcc-5.4.0/libgcc/config/mips/psp.h gcc-5.4.0-psp/libgcc/config/mips/ps
 +
 +/* Override the startfile spec to include crt0.o. */
 +#undef STARTFILE_SPEC
-+#define STARTFILE_SPEC "crt0%O%s crti%O%s crtbegin%O%s"
++#define STARTFILE_SPEC "{!mno-crt0:crt0%O%s} crti%O%s crtbegin%O%s"
 +
 +#undef SUBTARGET_CPP_SPEC
 +#define SUBTARGET_CPP_SPEC "-DPSP=1 -D__psp__=1 -D_PSP=1"
