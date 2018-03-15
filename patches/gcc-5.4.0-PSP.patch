@@ -658,6 +658,15 @@ diff -Nru gcc-5.4.0/gcc/config/mips/mips.md gcc-5.4.0-psp/gcc/config/mips/mips.m
 diff -Nru gcc-5.4.0/gcc/config/mips/mips.opt gcc-5.4.0-psp/gcc/config/mips/mips.opt
 --- gcc-5.4.0/gcc/config/mips/mips.opt	2014-02-21 13:30:47.000000000 +0000
 +++ gcc-5.4.0-psp/gcc/config/mips/mips.opt	2015-10-19 00:17:27.025646526 +0100
+@@ -240,7 +240,7 @@
+ Use 64-bit general registers
+ 
+ mgpopt
+-Target Report Var(TARGET_GPOPT) Init(1)
++Target Report Var(TARGET_GPOPT) Init(0)
+ Use GP-relative addressing to access small data
+ 
+ mplt
 @@ -400,5 +400,13 @@
  Target Report Var(TARGET_XGOT)
  Lift restrictions on GOT size
